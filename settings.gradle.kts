@@ -21,4 +21,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "YaDuoPlayer"
 include(":app")
- 
+include(":common") // 公共模块
+include(":player") // 播放器模块

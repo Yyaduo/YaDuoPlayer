@@ -5,15 +5,15 @@ plugins {
 }
 
 android {
-    namespace = "com.yaduo.yaduoplayer"
-    compileSdk = 35
+    namespace = rootProject.extra["appPackageName"] as String
+    compileSdk = rootProject.extra["compileSdk"] as Int
 
     defaultConfig {
-        applicationId = "com.yaduo.yaduoplayer"
-        minSdk = 24
-        targetSdk = 35
-        versionCode = 1
-        versionName = "1.0"
+        applicationId = rootProject.extra["appPackageName"] as String
+        minSdk = rootProject.extra["minSdk"] as Int
+        targetSdk = rootProject.extra["targetSdk"] as Int
+        versionCode = rootProject.extra["versionCode"] as Int
+        versionName = rootProject.extra["versionName"] as String
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -35,12 +35,14 @@ android {
         jvmTarget = "11"
     }
     buildFeatures {
+        buildConfig = true
         compose = true
     }
 }
 
 dependencies {
 
+    implementation(project(":common"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
