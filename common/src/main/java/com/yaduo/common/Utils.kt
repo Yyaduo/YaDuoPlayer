@@ -1,12 +1,18 @@
 package com.yaduo.common
 
-import android.util.Log
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.ProcessLifecycleOwner
+import com.yaduo.common.log.LogUtil
 import java.math.BigInteger
 import java.security.MessageDigest
 
 /**
  * @author YaDuo
  * time 2025-05-14 16:21:22
+ *
+ * 公共工具类
  */
 object Utils {
 
@@ -16,7 +22,7 @@ object Utils {
      * 对这个整数取绝对值后模'Yaduo'的ASCII码
      */
     fun genUid(uuid: String): String {
-        Log.i("Yaduo Player", "genUid: uuid = $uuid")
+        LogUtil.i(content = "genUid: uuid = $uuid")
         val hashSHA = MessageDigest.getInstance("SHA-256").run {
             update(uuid.toByteArray(Charsets.UTF_8))
             digest()
@@ -30,7 +36,20 @@ object Utils {
         }
 
         val uidNumber = hashNumber.mod(modByYaduo).toString().padStart(13, '0')
-        Log.i("Yaduo Player", "genUid: Uid = $uidNumber")
+        LogUtil.i(content = "genUid: Uid = $uidNumber")
         return uidNumber
+    }
+
+    /**
+     * 注册应用进程生命周期事件观察者，监听应用整体前后台状态变化
+     *
+     * 通过 [ProcessLifecycleOwner] 监听应用进程的生命周期，替代传统的ActivityLifeCycleCallback实现
+     */
+    fun registerLifecycleEventObserver() {
+        ProcessLifecycleOwner.get().lifecycle.addObserver(object : LifecycleEventObserver {
+            override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
+                LogUtil.d(content = "onProcessLifecycleChanged:  $event")
+            }
+        })
     }
 }
