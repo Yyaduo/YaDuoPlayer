@@ -4,10 +4,11 @@ import android.os.Build
 import com.yaduo.common.Utils
 
 /**
- * @author YaDuo
- * time 2025-05-14 16:11:38
+ * ### 设备工具类
+ *  - 获取所需设备信息
  *
- * 工具类, 获取所需设备信息
+ * @author YaDuo
+ * @since 2025-05-14 16:11:38
  */
 object DeviceInfo {
 

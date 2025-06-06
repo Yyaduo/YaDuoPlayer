@@ -9,10 +9,10 @@ import java.math.BigInteger
 import java.security.MessageDigest
 
 /**
- * @author YaDuo
- * time 2025-05-14 16:21:22
- *
  * 公共工具类
+ *
+ * @author YaDuo
+ * @since 2025-05-14 16:21:22
  */
 object Utils {
 

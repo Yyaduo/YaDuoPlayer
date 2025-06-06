@@ -6,7 +6,7 @@ import com.yaduo.common.ApplicationVersion
 
 /**
  * @author YaDuo
- * time 2025-05-15 00:46:26
+ * @since 2025-05-15 00:46:26
  * // FIXME: 打印的文件名和层级可能出错
  */
 object LogUtil {

@@ -10,8 +10,8 @@ allprojects {
     extra.apply {
         set("appName", "YaDuoPlayer")
         set("appPackageName", "com.yaduo.yaduoplayer")
-        set("versionName", "1.2.2")
-        set("versionCode", 10202)
+        set("versionName", "1.2.3")
+        set("versionCode", 10203)
         set("compileSdk", 34)
         set("buildToolsVersion", "34.0.0")
         set("minSdk", 26)

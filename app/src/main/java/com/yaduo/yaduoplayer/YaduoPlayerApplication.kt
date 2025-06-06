@@ -1,13 +1,13 @@
 package com.yaduo.yaduoplayer
 
 import android.app.Application
-import android.util.Log
 import com.yaduo.common.applogic.AppLogicUtil
 import com.yaduo.common.applogic.BuglyReport
+import com.yaduo.common.log.LogUtil
 
 /**
  * @author YaDuo
- * time 2025-05-14 15:35:09
+ * @since 2025-05-14 15:35:09
  */
 class YaduoPlayerApplication : Application() {
 
@@ -17,14 +17,12 @@ class YaduoPlayerApplication : Application() {
         fun getStartAppTime() = startAppTime
     }
 
-
-
     override fun onCreate() {
         super.onCreate()
         startAppTime = System.currentTimeMillis()
         AppLogicUtil.initialize(this)
         BuglyReport.initialize()
-        Log.i(TAG, "onCreate: application begin")
+        LogUtil.i(TAG, "onCreate: application begin")
     }
 
 }

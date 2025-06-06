@@ -8,9 +8,9 @@ import com.yaduo.common.device.DeviceInfo
 
 /**
  * @author YaDuo
- * time 2025-05-14 16:42:06
+ * @since 2025-05-14 16:42:06
  *
- * @see "bugly.qq.com"
+ * @see <b><i> bugly.qq.com <i><b>
  */
 object BuglyReport {
 

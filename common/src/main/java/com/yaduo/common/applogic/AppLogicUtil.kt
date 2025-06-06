@@ -4,7 +4,7 @@ import android.app.Application
 
 /**
  * @author YaDuo
- * time 2025-05-14 15:52:06
+ * @since 2025-05-14 15:52:06
  */
 object AppLogicUtil {
 
