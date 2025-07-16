@@ -1,61 +1,35 @@
 package com.yaduo.yaduoplayer
 
 import android.os.Bundle
-import android.util.Log
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.yaduo.yaduoplayer.ui.theme.YaDuoPlayerTheme
+import androidx.media3.common.util.UnstableApi
+import com.yaduo.common.Utils
+import com.yaduo.common.log.LogUtil
+import com.yaduo.yaduoplayer.activity.BaseActivity
+import com.yaduo.yaduoplayer.databinding.LayoutActivityMainBinding
+import com.yaduo.yaduoplayer.service.MediaPlayerService
+import com.yaduo.yaduoplayer.viewmodel.MainViewModel
 
-class MainActivity : ComponentActivity() {
+@UnstableApi
+class MainActivity : BaseActivity<LayoutActivityMainBinding>() {
 
     companion object {
         private const val TAG = "MainActivity"
     }
 
+    override fun loadVB() = LayoutActivityMainBinding.inflate(layoutInflater)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            YaDuoPlayerTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "YaDuo Player",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
-        }
+        runOnUiThread { Utils.registerLifecycleEventObserver() }
+        MediaPlayerService.launchMediaPlayerService(this)
+        LogUtil.i(TAG, "${MainViewModel().getSelectedCategories()}")
     }
 
     override fun onResume() {
         super.onResume()
-        Log.i(
+        LogUtil.i(
             TAG,
             "onResume: app launch time = ${System.currentTimeMillis() - YaduoPlayerApplication.getStartAppTime()}"
         )
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    YaDuoPlayerTheme {
-        Greeting("Android")
     }
 }
