@@ -1,7 +1,6 @@
 package com.yaduo.yaduoplayer.activity
 
 import android.os.Bundle
-import android.os.PersistableBundle
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
 import androidx.viewbinding.ViewBinding
@@ -14,12 +13,21 @@ abstract class BaseActivity<VB : ViewBinding> : ComponentActivity() {
 
     protected lateinit var vb: VB
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         vb = loadVB()
         setContentView(vb.root)
+        initViews()
     }
 
+    /**
+     * 加载ViewBinding
+     */
     abstract fun loadVB(): VB
+
+    /**
+     * 初始化控件
+     */
+    abstract fun initViews()
 }
