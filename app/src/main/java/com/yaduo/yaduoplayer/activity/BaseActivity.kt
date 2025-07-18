@@ -3,6 +3,7 @@ package com.yaduo.yaduoplayer.activity
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.viewbinding.ViewBinding
 
 /**
@@ -16,6 +17,10 @@ abstract class BaseActivity<VB : ViewBinding> : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
+        // 支持矢量图
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
+
         vb = loadVB()
         setContentView(vb.root)
         initViews()

@@ -16,6 +16,9 @@ android {
         versionName = rootProject.extra["versionName"] as String
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        // 开启矢量图支持
+        vectorDrawables.useSupportLibrary = true
     }
 
     buildTypes {
@@ -53,6 +56,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.constraintLayout)
+    implementation(libs.androidx.cardview)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.media3.ui)
     implementation(libs.androidx.media3.exoplayer)

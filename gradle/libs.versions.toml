@@ -19,6 +19,7 @@ retrofit = "2.11.0"
 okhttp = "4.12.0"
 gson = "2.11.0"
 constraintLayout = "2.1.4"
+cardview = "1.0.0"
 
 [libraries]
 # ================== Core Android 核心Android库 ==================
@@ -36,6 +37,7 @@ androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-toolin
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" } # Material Design 3的Compose实现
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" } # Compose的图像加载库
 androidx-constraintLayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintLayout" } # 相对布局
+androidx-cardview = { group = "androidx.cardview", name = "cardview", version.ref = "cardview" } # CardView
 
 # ================== Lifecycle 生命周期管理 ==================
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" } # 生命周期运行时管理(Kotlin扩展)
