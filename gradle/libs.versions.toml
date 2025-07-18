@@ -59,8 +59,6 @@ crashreport = { module = "com.tencent.bugly:crashreport", version.ref = "crashre
 junit = { group = "junit", name = "junit", version.ref = "junit" } # 单元测试框架
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" } # Android环境JUnit扩展
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" } # UI自动化测试框架
-androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" } # Compose单元测试支持
-androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" } # Compose测试清单支持
 
 [plugins]
 # ================== Build Plugins 构建插件 ==================
