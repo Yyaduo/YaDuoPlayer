@@ -1,9 +1,11 @@
 package com.yaduo.yaduoplayer.request
 
+import com.yaduo.common.applogic.Chucker
 import kotlinx.coroutines.flow.flow
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
 /**
  * 网络请求管理器
@@ -41,6 +43,9 @@ object RequestManager {
                 trustSSLSocket.getSSLSocketFactory(),
                 trustSSLSocket.getX509TrustManager()
             )
+            .connectTimeout(30, TimeUnit.SECONDS)
+            .readTimeout(30, TimeUnit.SECONDS)
+            .addInterceptor(Chucker.chuckerInterceptor)
             .hostnameVerifier(trustSSLSocket.getHostnameVerifier())
             .build()
 

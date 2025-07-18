@@ -6,6 +6,7 @@ coreKtx = "1.13.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
+chucker = "3.5.2"
 lifecycleRuntimeKtx = "2.8.3"
 lifecycleProcess = "2.2.0"
 appcompat = "1.7.0"
@@ -54,6 +55,7 @@ gson = { module = "com.google.code.gson:gson", version.ref = "gson" } # JSON解�
 
 # ================== ThirdPartyPlugins 第三方插件 ==================
 crashreport = { module = "com.tencent.bugly:crashreport", version.ref = "crashreport" } # 腾讯Bugly崩溃监控
+chucker = { module = "com.github.chuckerteam.chucker:library", version.ref = "chucker" } # 网络监控库
 
 # ================== Testing 测试相关 ==================
 junit = { group = "junit", name = "junit", version.ref = "junit" } # 单元测试框架

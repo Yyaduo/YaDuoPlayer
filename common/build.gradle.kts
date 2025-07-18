@@ -66,6 +66,8 @@ dependencies {
     implementation(libs.androidx.lifecycle.process)
     implementation(libs.material)
     implementation(libs.crashreport)
+    api(libs.chucker)
+    implementation(libs.okhttp)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
