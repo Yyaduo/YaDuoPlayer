@@ -1,6 +1,5 @@
 [versions]
 agp = "8.9.1"
-coilCompose = "2.4.0"
 crashreport = "latest.release"
 kotlin = "2.0.21"
 coreKtx = "1.13.0"
@@ -9,9 +8,8 @@ junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 lifecycleRuntimeKtx = "2.8.3"
 lifecycleProcess = "2.2.0"
-activityCompose = "1.8.1"
-composeBom = "2024.09.00"
 appcompat = "1.7.0"
+lottie = "6.4.0"
 material = "1.12.0"
 media3 = "1.4.1"
 coroutines = "1.8.0"
@@ -27,17 +25,10 @@ androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = 
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" } # 提供向后兼容支持
 material = { group = "com.google.android.material", name = "material", version.ref = "material" } # Material Design组件实现
 
-# ================== Compose UI相关库 ==================
-androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" } # 提供Compose与Activity的集成
-androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" } # Compose依赖的统一版本管理
-androidx-ui = { group = "androidx.compose.ui", name = "ui" } # Compose基础UI组件
-androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" } # Compose图形绘制支持
-androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" } # Compose预览和调试工具
-androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" } # Compose预览支持
-androidx-material3 = { group = "androidx.compose.material3", name = "material3" } # Material Design 3的Compose实现
-coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" } # Compose的图像加载库
+# ================== UI相关库 ==================
 androidx-constraintLayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintLayout" } # 相对布局
 androidx-cardview = { group = "androidx.cardview", name = "cardview", version.ref = "cardview" } # CardView
+lottie = { module = "com.airbnb.android:lottie", version.ref = "lottie" } # Lottie动画库
 
 # ================== Lifecycle 生命周期管理 ==================
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" } # 生命周期运行时管理(Kotlin扩展)
