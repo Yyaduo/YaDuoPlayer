@@ -2,6 +2,9 @@ package com.yaduo.common.applogic
 
 import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerInterceptor
+import okhttp3.Interceptor
+import okhttp3.Response
+import java.io.IOException
 
 /**
  *
@@ -13,19 +16,36 @@ import com.chuckerteam.chucker.api.ChuckerInterceptor
  *  - 轻量高效：仅 100KB 左右的体积开销
  *  - Chucker 工作流程：拦截请求 → 收集数据 → 展示结果
  *
+ * @see <a href="https://github.com/ChuckerTeam/chucker">Chucker GitHub</a>
  * @author YaDuo
  * @since 2025-07-18 17:50:53
- *
- * @see <b><i> https://github.com/ChuckerTeam/chucker <i><b>
  */
-object Chucker {
+object Chucker : ICommonModule {
+
+    override var isInitialized = false
 
     /**
      * 全局 Chucker 拦截器实例
      *
      * 此实例使用应用上下文创建，适用于整个应用生命周期
      */
-    val chuckerInterceptor by lazy { createChuckerInterceptor(AppLogicUtil.getApp()) }
+    private lateinit var _chuckerInterceptor: Interceptor
+
+    /**
+     * 获取 Chucker 拦截器实例
+     */
+    val interceptor: Interceptor
+        get() = when {
+            isInitialized -> _chuckerInterceptor
+            else -> DefaultInterceptor()
+        }
+
+    override fun initialize(context: Context) {
+        if (isInitialized) return
+
+        _chuckerInterceptor = createChuckerInterceptor(context)
+        isInitialized = true
+    }
 
     /**
      * 创建并配置 Chucker 网络监控拦截器
@@ -47,11 +67,23 @@ object Chucker {
      * @param context 应用上下文，用于访问资源
      * @return 配置好的 Chucker 拦截器实例
      */
-    private fun createChuckerInterceptor(context: Context) =
+    private fun createChuckerInterceptor(context: Context): Interceptor =
         ChuckerInterceptor.Builder(context)
-            .maxContentLength(250_000L) // 限制捕获数据大小
+            .maxContentLength(512_000L) // 限制捕获数据大小
             .redactHeaders("Authorization", "Cookie") // 敏感头脱敏
             .alwaysReadResponseBody(true) // 强制读取响应体
             .build()
 
+    /**
+     * 空操作拦截器
+     *
+     * 当 Chucker 未初始化时
+     * 该拦截器仅简单传递请求而不执行任何操作
+     */
+    private class DefaultInterceptor : Interceptor {
+        @Throws(IOException::class)
+        override fun intercept(chain: Interceptor.Chain): Response {
+            return chain.proceed(chain.request())
+        }
+    }
 }

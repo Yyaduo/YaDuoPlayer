@@ -1,5 +1,6 @@
 [versions]
 agp = "8.9.1"
+androidautosize = "v1.2.1"
 crashreport = "latest.release"
 kotlin = "2.0.21"
 coreKtx = "1.13.0"
@@ -56,6 +57,7 @@ gson = { module = "com.google.code.gson:gson", version.ref = "gson" } # JSON解�
 # ================== ThirdPartyPlugins 第三方插件 ==================
 crashreport = { module = "com.tencent.bugly:crashreport", version.ref = "crashreport" } # 腾讯Bugly崩溃监控
 chucker = { module = "com.github.chuckerteam.chucker:library", version.ref = "chucker" } # 网络监控库
+androidautosize = { module = "com.github.JessYanCoding:AndroidAutoSize", version.ref = "androidautosize" } # 屏幕适配方案
 
 # ================== Testing 测试相关 ==================
 junit = { group = "junit", name = "junit", version.ref = "junit" } # 单元测试框架

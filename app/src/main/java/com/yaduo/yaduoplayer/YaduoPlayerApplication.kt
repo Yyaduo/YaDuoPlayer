@@ -2,7 +2,6 @@ package com.yaduo.yaduoplayer
 
 import android.app.Application
 import com.yaduo.common.applogic.AppLogicUtil
-import com.yaduo.common.applogic.BuglyReport
 import com.yaduo.common.log.LogUtil
 
 /**
@@ -21,8 +20,8 @@ class YaduoPlayerApplication : Application() {
         super.onCreate()
         startAppTime = System.currentTimeMillis()
         AppLogicUtil.initialize(this)
-        BuglyReport.initialize()
-        LogUtil.i(TAG, "onCreate: application begin")
+        AppLogicUtil.initializeAllCommonModule()
+        LogUtil.i(TAG, "onCreate: application begin: ${AppLogicUtil.getApplicationVersionInfo()}")
     }
 
 }

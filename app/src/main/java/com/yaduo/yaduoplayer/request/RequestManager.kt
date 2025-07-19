@@ -1,6 +1,6 @@
 package com.yaduo.yaduoplayer.request
 
-import com.yaduo.common.applogic.Chucker
+import com.yaduo.common.applogic.AppLogicUtil
 import kotlinx.coroutines.flow.flow
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -45,7 +45,7 @@ object RequestManager {
             )
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
-            .addInterceptor(Chucker.chuckerInterceptor)
+            .addInterceptor(AppLogicUtil.getChuckerInterceptor())
             .hostnameVerifier(trustSSLSocket.getHostnameVerifier())
             .build()
 

@@ -9,6 +9,11 @@ import com.yaduo.yaduoplayer.databinding.LayoutActivityMainBinding
 import com.yaduo.yaduoplayer.service.MediaPlayerService
 import com.yaduo.yaduoplayer.viewmodel.MainViewModel
 
+/**
+ * ### Activity - 主页
+ * @author YaDuo
+ * @since 2025-07-16 18:04:10
+ */
 @UnstableApi
 class MainActivity : BaseActivity<LayoutActivityMainBinding>() {
 
