@@ -53,6 +53,18 @@ interface IPlayer {
     fun isPlaying(): Boolean
 
     /**
+     * 设置播放模式
+     * @param playMode 播放模式
+     */
+    fun setPlayMode(playMode: Int)
+
+    /**
+     * 获取当前播放模式
+     * @return 当前播放模式
+     */
+    fun getPlayMode(): Int
+
+    /**
      * 重置播放器至初始状态
      *
      * **实现要求**：
@@ -86,4 +98,14 @@ interface IPlayer {
      * 移除一个播放监听器
      */
     fun removePlayerListener(playerListener: PlayerListener)
+
+    /**
+     * 添加一个播放模式监听器
+     */
+    fun addPlayModeListener(listener: PlayModeListener)
+
+    /**
+     * 移除一个播放模式监听器
+     */
+    fun removePlayModeListener(listener: PlayModeListener)
 }

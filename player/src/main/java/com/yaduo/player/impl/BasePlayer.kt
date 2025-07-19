@@ -1,12 +1,12 @@
 package com.yaduo.player.impl
 
-import androidx.media3.common.MediaItem
-import androidx.media3.common.MediaMetadata
 import androidx.media3.common.Player
 import androidx.media3.common.util.UnstableApi
 import com.yaduo.player.interfaces.IPlayer
+import com.yaduo.player.interfaces.PlayModeListener
 import com.yaduo.player.interfaces.PlayerListener
 import com.yaduo.player.model.MediaItemData
+import com.yaduo.player.util.toMediaItem
 import java.util.concurrent.CopyOnWriteArrayList
 
 /**
@@ -22,16 +22,19 @@ abstract class BasePlayer : IPlayer {
     /** 播放器监听器列表，一个播放器可能有多个地方在监听 **/
     protected val listeners = CopyOnWriteArrayList<PlayerListener>()
 
+    /** 播放模式变更监听器列表 **/
+    private val playModeListeners = CopyOnWriteArrayList<PlayModeListener>()
+
     /** 当前正在使用的MediaItem，不代表正在播放，只是player中选取了该单位 **/
     private var currentMediaItem: MediaItemData? = null
 
     /** 播放器实例，由子类实现createPlayer方法后创建 **/
     protected val innerPlayer by lazy { createPlayer() }
 
-    override fun play(mediaItem: MediaItemData) {
-        currentMediaItem = mediaItem
+    override fun play(mediaItemData: MediaItemData) {
+        currentMediaItem = mediaItemData
         innerPlayer.apply {
-            setMediaItem(createMediaItem(mediaItem))
+            setMediaItem(mediaItemData.toMediaItem())
             prepare()
             playWhenReady = true
             play()
@@ -64,6 +67,21 @@ abstract class BasePlayer : IPlayer {
 
     override fun getPlayer() = innerPlayer
 
+    override fun setPlayMode(playMode: Int) {
+        innerPlayer.repeatMode = playMode
+        notifyPlayModeChanged(playMode)
+    }
+
+    override fun getPlayMode(): Int = innerPlayer.repeatMode
+
+    override fun addPlayModeListener(listener: PlayModeListener) {
+        playModeListeners.add(listener)
+    }
+
+    override fun removePlayModeListener(listener: PlayModeListener) {
+        playModeListeners.remove(listener)
+    }
+
     override fun addPlayerListener(playerListener: PlayerListener) {
         listeners.add(playerListener)
     }
@@ -72,30 +90,19 @@ abstract class BasePlayer : IPlayer {
         listeners.remove(playerListener)
     }
 
-    private fun removeAllListener() = listeners.clear()
+    internal fun notifyPlayModeChanged(newMode: Int) {
+        playModeListeners.forEach { it.onPlayModeChanged(newMode) }
+    }
+
+    private fun removeAllListener() {
+        listeners.clear()
+        playModeListeners.clear()
+    }
 
     /**
      * 创建播放器实例
      * 由子类实现
      */
     abstract fun createPlayer(): Player
-
-    /**
-     * 创建MediaItem
-     * @param data Data类MediaItemData，其中包含了构建MediaItem的数据
-     * @return MediaItem，用于直接传入播放器
-     */
-    private fun createMediaItem(data: MediaItemData): MediaItem {
-        return MediaItem.Builder()
-            .setUri(data.uri)
-            .setMediaMetadata(
-                MediaMetadata.Builder()
-                    .setTitle(data.title)
-                    .setArtist(data.artist)
-                    .build()
-            )
-            .setTag(data)
-            .build()
-    }
 
 }

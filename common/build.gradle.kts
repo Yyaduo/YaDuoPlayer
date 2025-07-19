@@ -68,6 +68,7 @@ dependencies {
     implementation(libs.crashreport)
     implementation(libs.chucker)
     implementation(libs.androidautosize)
+    api(libs.eventbus)
     implementation(libs.okhttp)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

@@ -52,6 +52,12 @@ class ExoPlayerImpl(
 
             override fun onPlayerError(error: PlaybackException) =
                 listeners.forEach { it.onError(error) }
+
+            override fun onEvents(player: Player, events: Player.Events) {
+                if (events.contains(Player.EVENT_REPEAT_MODE_CHANGED)) {
+                    notifyPlayModeChanged(player.repeatMode)
+                }
+            }
         }
     }
 }
